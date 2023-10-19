@@ -9,6 +9,7 @@
 
     <script>
         function openJDApp() {
+            window.JDApp.openJDApp();
             // 检查是否安装了京东App
             if (window.location.href.indexOf("Android") != -1 && window.JDApp) {
                 window.JDApp.openJDApp();
