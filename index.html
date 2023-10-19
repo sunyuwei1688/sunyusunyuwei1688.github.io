@@ -4,9 +4,21 @@
     <title>跳转到京东App</title>
 </head>
 <body>
-    <p>页面正在跳转到京东App...</p>
+    <p>点击下面的按钮跳转到京东App：</p>
+    <button onclick="openJDApp()">打开京东App</button>
+
     <script>
-        window.location.href = "openapp.jdmobile://virtual?params={\"category\":\"jump\",\"des\":\"productDetail\",\"skuId\":\"123456\"}";
+        function openJDApp() {
+            // 检查是否安装了京东App
+            if (window.location.href.indexOf("Android") != -1 && window.JDApp) {
+                window.JDApp.openJDApp();
+            } else if (window.location.href.indexOf("iPhone") != -1 && window.webkit) {
+                window.webkit.messageHandlers.openJDApp.postMessage(null);
+            } else {
+                // 如果没有安装京东App，可以跳转到应用商店页面
+                window.location.href = "https://itunes.apple.com/app/id414245413"; // iOS App Store链接
+            }
+        }
     </script>
 </body>
 </html>
